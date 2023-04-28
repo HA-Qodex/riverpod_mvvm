@@ -14,10 +14,11 @@ class HomeView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print('------------------------>>');
     final textController = useTextEditingController();
     var location = useState('Dhaka');
     var weather = ref.watch(weatherProvider(location.value));
-    useMemoized(() => weather, [location.value]);
+    // useMemoized(() => weather, [location.value]);
 
     return Scaffold(
       appBar: AppBar(

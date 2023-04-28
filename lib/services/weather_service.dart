@@ -15,7 +15,7 @@ class WeatherService extends WeatherServices {
       final response = await dio().get(url);
       return WeatherModel.fromJson(response.data);
     } on DioError catch (e) {
-      debugPrint("------------------------>> $e");
+      // debugPrint("------------------------>> $e");
       throw Exception("Weather error $e");
     }
   }
