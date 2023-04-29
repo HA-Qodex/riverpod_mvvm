@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_mvvm/models/weather_model.dart';
+import 'package:riverpod_mvvm/routes/route_name.dart';
 import 'package:riverpod_mvvm/ui/view_models/home_view_model.dart';
 
 final weatherProvider =
@@ -14,7 +16,6 @@ class HomeView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print('------------------------>>');
     final textController = useTextEditingController();
     var location = useState('Dhaka');
     var weather = ref.watch(weatherProvider(location.value));
@@ -24,6 +25,11 @@ class HomeView extends HookConsumerWidget {
       appBar: AppBar(
         title: const Text('Weather'),
         centerTitle: true,
+        actions: [
+          IconButton(onPressed: (){
+            context.goNamed(AppRoutes.todo);
+          }, icon: Icon(Icons.add))
+        ],
       ),
       body: Center(
         child: Column(
